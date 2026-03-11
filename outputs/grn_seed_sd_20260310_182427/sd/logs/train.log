@@ -1,0 +1,1 @@
+2026-03-10 18:24:28 | INFO | grn.sd | epoch=0 train_loss=1.1732 train_acc=0.5714 val_loss=1.1788 val_acc=0.3333 best_val=0.3333

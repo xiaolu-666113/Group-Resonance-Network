@@ -1,0 +1,53 @@
+experiment:
+  name: grn_deap_arousal_loso
+  output_root: outputs
+  seed: 42
+
+dataset:
+  name: deap
+  deap_task: arousal
+  deap_threshold: 5.0
+  data_path: data/deap_features.npz
+  input_mode: features
+  protocol: loso
+  num_workers: 0
+  sampling_rate: 128
+  val_ratio: 0.1
+
+model:
+  embedding_dim: 256
+  encoder_hidden_dim: 256
+  transformer_layers: 2
+  transformer_heads: 4
+  dropout: 0.2
+  prototypes: 8
+  temperature: 0.07
+  prototype_similarity: cosine
+  resonance_channels: 32
+  fusion_hidden_dim: 512
+  use_prototypes: true
+  use_resonance: true
+
+resonance:
+  mode: precompute
+  k_refs: 3
+  selector_strategy: random
+  fs: 128
+  coherence_nperseg: 128
+
+loss:
+  lambda_proto: 0.1
+  prototype_entropy_weight: 0.01
+
+training:
+  epochs: 80
+  batch_size: 64
+  optimizer: adam
+  lr: 1.0e-4
+  weight_decay: 1.0e-4
+  scheduler: cosine
+  early_stopping_patience: 10
+  grad_clip_norm: 1.0
+  mixed_precision: false
+  deterministic: true
+  resume: ""
